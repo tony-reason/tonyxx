@@ -1,0 +1,86 @@
+@use 'sass:map';
+@use 'styles/utils/variables.scss';
+@use 'styles/utils/mixins.scss';
+@use 'styles/theme/theme.scss';
+@use 'styles/theme/icons.scss';
+
+.WindowButton {
+    height: 100%;
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color variables.$transitionMode;
+
+    &:hover {
+        background-color: map.get(theme.$color, 'button');
+
+        &::before {
+            color: map.get(theme.$color, 'windowHead');
+        }
+    }
+
+    &::before {
+        font-size: calc(map.get(theme.$elmSize, 'windowHead') * 5 / 8);
+        line-height: 1;
+        font-family: map.get(theme.$fontFamily, 'icons');
+        color: map.get(theme.$color, 'control');
+        transition: color variables.$transitionMode;
+    }
+
+    &.close {
+        &:hover {
+            background-color: map.get(theme.$color, 'danger');
+        }
+
+        &::before {
+            content: map.get(icons.$code, 'close');
+        }
+    }
+
+    &.toggleFullscreen {
+        &::before {
+            content: map.get(icons.$code, 'expand');
+        }
+
+        &.windowMode_fullscreen,
+        &.windowMode_left,
+        &.windowMode_right {
+            &::before {
+                content: map.get(icons.$code, 'unexpand');
+            }
+        }
+
+        &.windowMode_collapse {
+            display: none;
+        }
+    }
+
+    &.collapse {
+        &::before {
+            content: map.get(icons.$code, 'collapse');
+        }
+    }
+
+    &.left {
+        &::before {
+            content: map.get(icons.$code, 'left');
+        }
+    }
+
+    &.right {
+        &::before {
+            content: map.get(icons.$code, 'right');
+        }
+    }
+}
+
+@include mixins.pda {
+    .WindowButton {
+        &.toggleFullscreen,
+        &.left,
+        &.right {
+            display: none;
+        }
+    }
+}

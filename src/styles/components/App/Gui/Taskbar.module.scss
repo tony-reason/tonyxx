@@ -1,0 +1,13 @@
+@use 'sass:map';
+@use 'styles/utils/variables.scss';
+@use 'styles/theme/theme.scss';
+
+.Taskbar {
+    height: map.get(theme.$elmSize, 'panel');
+    background-color: map.get(theme.$color, 'panel');
+    display: flex;
+    justify-content: center;
+    column-gap: calc(variables.$sizeBase / 4);
+    z-index: 10;
+    position: relative;
+}

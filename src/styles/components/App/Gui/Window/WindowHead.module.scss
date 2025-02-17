@@ -1,0 +1,44 @@
+@use 'sass:map';
+@use 'styles/utils/variables.scss';
+@use 'styles/theme/theme.scss';
+
+.WindowHead {
+    display: flex;
+    column-gap: variables.$sizeBase * 2;
+    background-color: map.get(theme.$color, 'windowHead');
+    user-select: none;
+    height: map.get(theme.$elmSize, 'windowHead');
+    flex-shrink: 0;
+
+    &.focus {
+        background-color: map.get(theme.$color, 'windowHeadFocus');
+    }
+
+    .thumb {
+        height: 100%;
+        aspect-ratio: 1;
+        padding: variables.$sizeBase;
+        box-sizing: border-box;
+        background-repeat: no-repeat;
+        background-origin: content-box;
+        background-size: contain;
+        background-position: center;
+    }
+
+    .text {
+        display: flex;
+        align-items: center;
+        flex-grow: 1;
+        flex-shrink: 1;
+        white-space: nowrap;
+        overflow: hidden;
+        font: map.get(theme.$fontWeight, 'contentAccent')
+            map.get(theme.$fontSize, 'windowHead') / #{1}
+            map.get(theme.$fontFamily, 'windowHead');
+    }
+
+    .textLimiter {
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}

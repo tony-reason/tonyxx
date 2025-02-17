@@ -1,0 +1,57 @@
+@use 'sass:map';
+@use 'styles/utils/variables.scss';
+@use 'styles/theme/theme.scss';
+
+$size: variables.$sizeBase * 20;
+$raysCount: 12;
+$animationPeriod: 1.2s;
+$angle: calc(360deg / $raysCount);
+
+.Spinner {
+    color: map.get(theme.$color, 'activeUiElm');
+    width: $size;
+    height: $size;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+    &,
+    .ray,
+    .ray::after {
+        box-sizing: border-box;
+    }
+
+    .ray {
+        transform-origin: calc($size / 2) calc($size / 2);
+        animation: spinner $animationPeriod linear infinite;
+    }
+
+    .ray:after {
+        content: '';
+        position: absolute;
+        top: 3.2px;
+        left: 36.8px;
+        width: 6.4px;
+        height: 17.6px;
+        border-radius: 20%;
+        background: currentColor;
+    }
+
+    @for $rayIndex from 1 through $raysCount {
+        .ray:nth-child(#{$rayIndex}) {
+            transform: rotate($angle * ($rayIndex - 1));
+            animation-delay: calc($rayIndex / ($raysCount - 2)) - $animationPeriod;
+        }
+    }
+}
+
+@keyframes spinner {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}

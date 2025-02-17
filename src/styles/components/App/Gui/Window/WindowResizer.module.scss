@@ -1,0 +1,81 @@
+@use 'sass:map';
+@use 'sass:color';
+@use 'styles/utils/mixins.scss';
+@use 'styles/theme/theme.scss';
+@use 'styles/theme/icons.scss';
+
+$magnetDistance: 4px;
+
+.WindowResizer {
+    position: absolute;
+    z-index: 10;
+    opacity: 0;
+
+    &.size {
+        right: 0;
+        bottom: 0;
+        cursor: se-resize;
+        z-index: 20;
+
+        &:hover {
+            opacity: 1;
+
+            &::before {
+                color: map.get(theme.$color, 'button');
+            }
+        }
+
+        &::before {
+            font: #{map.get(theme.$elmSize, 'windowResizer')}
+                / 1
+                map.get(theme.$fontFamily, 'icons');
+            content: map.get(icons.$code, 'resize');
+            color: color.scale(map.get(theme.$color, 'panel'), $lightness: -50%);
+            position: absolute;
+            right: 0;
+            bottom: 0;
+        }
+    }
+
+    &.sizeW,
+    &.sizeE {
+        top: 0;
+        bottom: 0;
+        width: $magnetDistance;
+        cursor: ew-resize;
+    }
+
+    &.sizeW {
+        right: 100%;
+    }
+
+    &.sizeE {
+        left: 100%;
+    }
+
+    &.sizeN,
+    &.sizeS {
+        left: 0;
+        right: 0;
+        height: $magnetDistance;
+        cursor: ns-resize;
+    }
+
+    &.sizeS {
+        top: 100%;
+    }
+
+    &.sizeN {
+        bottom: 100%;
+    }
+
+    :has(&):hover > &.size {
+        opacity: 1;
+    }
+}
+
+@include mixins.pda {
+    .WindowResizer {
+        display: none;
+    }
+}

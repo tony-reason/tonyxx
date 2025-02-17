@@ -1,0 +1,104 @@
+@use 'sass:map';
+@use 'sass:color';
+@use 'styles/utils/variables.scss';
+@use 'styles/theme/theme.scss';
+@use 'styles/theme/icons.scss';
+
+.NavigatorItem {
+    position: relative;
+    display: flex;
+    align-items: center;
+    line-height: 1;
+
+    &[data-level='0'].closed,
+    &:not([data-level='0']):not(:hover) {
+        .subs {
+            display: none;
+        }
+    }
+
+    &[data-level='0'] {
+        height: 0;
+    }
+
+    &:not([data-level='0']) {
+        &:hover:not(:has(&:hover)) {
+            background-color: color.scale(map.get(theme.$color, 'panel'), $lightness: -50%);
+
+            .data {
+                color: map.get(theme.$color, 'textLight');
+            }
+
+            .subs .data {
+                color: inherit;
+            }
+        }
+
+        &:hover:has(&:hover) {
+            background-color: color.scale(map.get(theme.$color, 'panel'), $lightness: -15%);
+        }
+
+        &.parent {
+            &::after {
+                content: map.get(icons.$code, 'drop_right');
+                font-size: variables.$sizeBase * 6;
+                font-family: map.get(theme.$fontFamily, 'icons');
+                color: map.get(theme.$color, 'button');
+                margin-left: auto;
+                transform: translateX(-(variables.$sizeBase) * 2);
+            }
+        }
+    }
+
+    .data {
+        display: flex;
+        align-items: center;
+        column-gap: variables.$sizeBase * 2;
+        height: variables.$sizeBase * 9;
+        padding: calc(variables.$sizeBase / 2)
+            variables.$sizeBase * 4
+            calc(variables.$sizeBase / 2)
+            variables.$sizeBase;
+        flex-grow: 1;
+
+        &[data-level='0'] {
+            padding: 0;
+            visibility: hidden;
+        }
+    }
+
+    .thumb {
+        height: 100%;
+        aspect-ratio: 1;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-origin: content-box;
+        padding: variables.$sizeBase;
+        box-sizing: border-box;
+    }
+
+    .name {
+        white-space: nowrap;
+        font-size: map.get(theme.$fontSize, 'dataNavigator');
+
+        &:empty {
+            display: none;
+        }
+    }
+
+    .subs {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        left: 100%;
+        bottom: 0;
+        background-color: map.get(theme.$color, 'panel');
+
+        &[data-level='0'] {
+            left: 0;
+            bottom: 100%;
+            margin-bottom: variables.$sizeBase;
+        }
+    }
+}

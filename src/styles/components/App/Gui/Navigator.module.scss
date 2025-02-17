@@ -1,0 +1,15 @@
+@use 'sass:map';
+@use 'styles/utils/variables.scss';
+
+.Navigator {
+    height: 100%;
+    aspect-ratio: 1;
+    position: absolute;
+    left: 0;
+    background:
+        map.get(variables.$path, 'logo')
+        no-repeat
+        center
+        / auto calc(100% - variables.$sizeBase * 3.5);
+    cursor: pointer;
+}

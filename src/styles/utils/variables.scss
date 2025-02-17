@@ -1,0 +1,13 @@
+$transitionMode: .2s linear;
+$sizeBase: 4px;
+
+$breakpoint: (
+    'mobile': 576px,
+    'tablet': 1024px,
+    'desktop': 1400px,
+    'desktopL': 2000px
+);
+
+$path: (
+    'logo': url('/logo.svg')
+);

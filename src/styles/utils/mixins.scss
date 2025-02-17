@@ -1,0 +1,32 @@
+@use 'sass:map';
+@use 'styles/utils/variables.scss';
+
+@mixin fullscreen($bound: 0) {
+    position: absolute;
+    left: $bound;
+    right: $bound;
+    top: $bound;
+    bottom: $bound;
+}
+
+@mixin transition($props, $mode) {
+    $transitions: '';
+
+    @each $prop in $props {
+        $transitions: #{$transitions}, #{$prop} #{$mode};
+    }
+
+    transition: #{$transitions};
+}
+
+@mixin pda {
+    @media (max-width: map.get(variables.$breakpoint, 'tablet')) {
+        @content;
+    }
+}
+
+@mixin desktop {
+    @media (min-width: (map.get(variables.$breakpoint, 'tablet') + 1)) {
+        @content;
+    }
+}

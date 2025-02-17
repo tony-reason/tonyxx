@@ -1,0 +1,54 @@
+@use 'styles/theme/fonts.scss';
+@use 'styles/utils/variables.scss';
+
+$fontFamily: (
+    'app': 'Ubuntu',
+    'desktopIcon': 'Ubuntu',
+    'windowHead': 'Akzidenz Grotesk',
+    'windowContent': 'Ubuntu',
+    'icons': 'icomoon'
+);
+
+$fontSize: (
+    'app': 14px,
+    'windowHead': 16px,
+    'windowContent': 15px,
+    'desktopIcon': 14px,
+    'dataNavigator': 15px,
+    'contentHeadingPrimary': 24px,
+    'contentHeadingSecondary': 20px
+);
+
+$fontWeight: (
+    'contentHeading': 500,
+    'contentAccent': 700,
+    'icon': 300
+);
+
+$elmSize: (
+    'windowHead': variables.$sizeBase * 8,
+    'panel': variables.$sizeBase * 10,
+    'windowResizer': variables.$sizeBase * 6,
+    'desktopIcon': variables.$sizeBase * 11
+);
+
+$color: (
+    'text': #000,
+    'textSecondary': #777,
+    'textLight': #fff,
+    'textDir': #d0f8ff,
+    'windowHead': #e0e0e0,
+    'windowHeadFocus': #70f2ff,
+    'panel': #93d1f0,
+    'button': #555,
+    'control': #333,
+    'activeUiElm': #136188,
+    'desktopBg': #021126,
+    'contentBg': #fff,
+    'contentBgDir': #303f4e,
+    'contentHeading': #2e5c65,
+    'contentLink': #037570,
+    'contentLabel': #2e5c65,
+    'danger': #f63131,
+    'scrollbar': #a7b4bb
+);

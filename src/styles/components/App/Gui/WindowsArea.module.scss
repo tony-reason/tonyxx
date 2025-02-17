@@ -1,0 +1,66 @@
+@use 'sass:map';
+@use 'styles/utils/mixins.scss';
+@use 'styles/utils/variables.scss';
+@use 'styles/theme/theme.scss';
+
+.WindowsArea {
+    @include mixins.fullscreen;
+
+    bottom: map.get(theme.$elmSize, 'panel');
+    pointer-events: none;
+    z-index: 10;
+    overflow: hidden;
+
+    &::before {
+        content: '';
+        background-color: rgba(map.get(theme.$color, 'panel'), .5);
+        border: 2px solid rgba(map.get(theme.$color, 'panel'), .75);
+        position: absolute;
+        top: variables.$sizeBase;
+        bottom: variables.$sizeBase;
+        z-index: calc(var(--maxWindowZIndex) - 1);
+        visibility: hidden;
+        box-sizing: border-box;
+        opacity: 0;
+        transition: opacity variables.$transitionMode;
+    }
+
+    &.fullscreen,
+    &.left,
+    &.right,
+    &.collapse {
+        &::before {
+            visibility: visible;
+            opacity: 1;
+        }
+    }
+
+    &.fullscreen {
+        &::before {
+            left: variables.$sizeBase;
+            right: variables.$sizeBase;
+        }
+    }
+
+    &.left {
+        &::before {
+            left: variables.$sizeBase;
+            right: calc(50% + variables.$sizeBase);
+        }
+    }
+
+    &.right {
+        &::before {
+            left: calc(50% + variables.$sizeBase);
+            right: variables.$sizeBase;
+        }
+    }
+
+    &.collapse {
+        &::before {
+            left: variables.$sizeBase;
+            right: variables.$sizeBase;
+            top: calc(100% - variables.$sizeBase * 3);
+        }
+    }
+}

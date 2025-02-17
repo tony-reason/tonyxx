@@ -1,0 +1,9 @@
+@use 'styles/utils/mixins.scss';
+
+.Gui {
+    @include mixins.fullscreen;
+
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}

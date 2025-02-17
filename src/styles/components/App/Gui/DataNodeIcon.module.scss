@@ -1,0 +1,36 @@
+@use 'sass:map';
+@use 'styles/theme/theme.scss';
+@use 'styles/utils/variables.scss';
+
+.DataNodeIcon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: map.get(theme.$elmSize, 'desktopIcon');
+    cursor: pointer;
+
+    .image {
+        width: calc(map.get(theme.$elmSize, 'desktopIcon') * 4 / 5);
+        aspect-ratio: 1;
+        background-repeat: no-repeat;
+        background-origin: content-box;
+        background-size: contain;
+        background-position: center;
+    }
+
+    .text {
+        font: map.get(theme.$fontWeight, 'icon')
+            map.get(theme.$fontSize, 'desktopIcon') / #{1.1}
+            map.get(theme.$fontFamily, 'desktopIcon');
+        margin-top: variables.$sizeBase * 2;
+        text-align: center;
+        color: map.get(theme.$color, 'textLight');
+    }
+
+    &.container_directory {
+        .text {
+            font-family: map.get(theme.$fontFamily, 'windowContent');
+            color: map.get(theme.$color, 'textDir');
+        }
+    }
+}

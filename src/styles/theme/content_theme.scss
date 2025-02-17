@@ -1,0 +1,111 @@
+@use 'sass:map';
+@use 'sass:color';
+@use 'styles/utils/variables.scss';
+@use 'styles/theme/theme.scss';
+
+p,
+ul,
+li,
+h1,
+h2 {
+    margin: 0;
+}
+
+ul {
+    padding: 0;
+    list-style: none;
+}
+
+.section {
+    max-width: 18cm;
+    margin: 0 auto;
+    padding: variables.$sizeBase * 4 0;
+}
+
+.article {
+    margin-bottom: variables.$sizeBase * 12;
+
+    &.with-image {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+
+        .text {
+            padding-right: variables.$sizeBase * 2;
+        }
+
+        .image {
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: left top;
+        }
+    }
+}
+
+.heading {
+    margin-bottom: variables.$sizeBase * 6;
+    font-weight: map.get(theme.$fontWeight, 'contentHeading');
+    color: map.get(theme.$color, 'contentHeading');
+
+    &.primary {
+        font-size: map.get(theme.$fontSize, 'contentHeadingPrimary');
+    }
+
+    &.secondary {
+        font-size: map.get(theme.$fontSize, 'contentHeadingSecondary');
+    }
+}
+
+.paragraph,
+.list {
+    &:not(:last-child) {
+        margin-bottom: variables.$sizeBase * 4;
+    }
+
+    &.secondary {
+        margin-bottom: variables.$sizeBase * 2;
+    }
+
+    &.note {
+        color: map.get(theme.$color, 'textSecondary');
+    }
+}
+
+.label {
+    color: map.get(theme.$color, 'contentLabel');
+    margin-right: .25em;
+}
+
+.list {
+    &-item {
+        &:not(:last-child) {
+            margin-bottom: variables.$sizeBase * 2;
+        }
+    }
+}
+
+.super {
+    font-weight: map.get(theme.$fontWeight, 'contentAccent');
+    margin-right: .25em;
+}
+
+.sub {
+    font-size: 80%;
+}
+
+.link {
+    color: map.get(theme.$color, 'contentLink');
+}
+
+.date {
+    color: map.get(theme.$color, 'contentHeading');
+}
+
+.company {
+    color: map.get(theme.$color, 'contentHeading');
+    font-weight: map.get(theme.$fontWeight, 'contentAccent');
+}
+
+::selection {
+    color: map.get(theme.$color, 'textLight');
+    background-color: map.get(theme.$color, 'contentLabel');
+}

@@ -1,0 +1,19 @@
+@use 'sass:map';
+@use 'styles/utils/variables.scss';
+@use 'styles/theme/theme.scss';
+
+.Desktop {
+    position: relative;
+    flex-grow: 1;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    gap: variables.$sizeBase * 6;
+    padding: variables.$sizeBase * 4;
+    box-sizing: border-box;
+    background-color: map.get(theme.$color, 'desktopBg');
+    background-position: center;
+    background-size: cover;
+    overflow: auto;
+    user-select: none;
+}

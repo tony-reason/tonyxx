@@ -1,0 +1,13 @@
+@use 'sass:map';
+@use 'styles/theme/theme.scss';
+
+.App {
+    position: relative;
+    height: 100vh;
+    font-family: map.get(theme.$fontFamily, 'app');
+    font-size: map.get(theme.$fontSize, 'app');
+    line-height: 1.25;
+    color: map.get(theme.$color, 'text');
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}

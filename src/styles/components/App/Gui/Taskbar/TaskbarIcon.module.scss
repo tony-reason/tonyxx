@@ -1,0 +1,59 @@
+@use 'sass:map';
+@use 'sass:color';
+@use 'styles/utils/variables.scss';
+@use 'styles/utils/mixins.scss';
+@use 'styles/theme/theme.scss';
+@use 'styles/theme/icons.scss';
+
+.TaskbarIcon {
+    height: 100%;
+    aspect-ratio: 1;
+    padding: variables.$sizeBase;
+    box-sizing: border-box;
+    position: relative;
+    background-color: map.get(theme.$color, 'control');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    background-origin: content-box;
+    cursor: pointer;
+
+    &.focus {
+        background-color: map.get(theme.$color, 'activeUiElm');
+    }
+}
+
+@include mixins.desktop {
+    .TaskbarIcon {
+        &:hover {
+            background-color: map.get(theme.$color, 'button');
+        }
+
+        &.focus {
+            &:hover {
+                background-color: color.scale(map.get(theme.$color, 'activeUiElm'), $lightness: 10%);
+            }
+        }
+
+        &:not(:hover) {
+            .popover {
+                display: none;
+            }
+        }
+
+        .popover {
+            position: absolute;
+            bottom: 100%;
+            right: 0;
+            background-color: map.get(theme.$color, 'windowHeadFocus');
+        }
+    }
+}
+
+@include mixins.pda {
+    .TaskbarIcon {
+        .popover {
+            display: none;
+        }
+    }
+}
